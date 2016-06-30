@@ -34,7 +34,10 @@ package org.deb;
 import org.deb.utility.JsonBrothersUtil;
 import org.deb.utility.TestUtil;
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Mode;
 
+@BenchmarkMode(value = { Mode.All })
 public class MyBenchmark {
 
     @Benchmark

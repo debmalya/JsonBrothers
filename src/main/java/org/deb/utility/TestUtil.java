@@ -23,23 +23,24 @@ import com.google.gson.JsonParser;
  *
  */
 public class TestUtil {
-	public static final String JSON_STR = "{" + "\"glossary\":{" + "\"title\":\"example glossary\","
-			+ "\"GlossDiv\":{" + "\"title\":\"S\"," + "\"GlossList\":{" + "\"GlossEntry\":{"
-			+ "\"ID\":\"SGML\"," + "\"SortAs\":\"SGML\","
+	public static final String JSON_STR = "{" + "\"glossary\":{" + "\"title\":\"example glossary\"," + "\"GlossDiv\":{"
+			+ "\"title\":\"S\"," + "\"GlossList\":{" + "\"GlossEntry\":{" + "\"ID\":\"SGML\"," + "\"SortAs\":\"SGML\","
 			+ "\"GlossTerm\":\"Standard Generalized Markup Language\"," + "\"Acronym\":\"SGML\","
 			+ "\"Abbrev\":\"ISO 8879:1986\"," + "\"GlossDef\":{"
 			+ "\"para\":\"A meta-markup language, used to create markup languages such as DocBook.\","
 			+ "\"GlossSeeAlso\":[\"GML\",\"XML\"]" + "}," + "\"GlossSee\":\"markup\"" + "}" + "}" + "}" + "}" + "}";
-	
-	
+
+	public static final String GSON_STR = "{\"glossary\":{\"title\":\"example glossary\",\"GlossDiv\":{\"title\":\"S\",\"GlossList\":{\"GlossEntry\":{\"GlossTerm\":\"Standard Generalized Markup Language\",\"GlossSee\":\"markup\",\"SortAs\":\"SGML\",\"GlossDef\":{\"para\":\"A meta-markup language, used to create markup languages such as DocBook.\",\"GlossSeeAlso\":[\"GML\",\"XML\"]},\"ID\":\"SGML\",\"Acronym\":\"SGML\",\"Abbrev\":\"ISO 8879:1986\"}}}}}";
+
 	public static final JsonObject JSON_OBJ = createJsonObject(JSON_STR);
-	
-	
+
 	public static final String KEY = "1234567890";
-	
+
 	/**
 	 * Create JsonObject from json string.
-	 * @param jsonString  to be converted.
+	 * 
+	 * @param jsonString
+	 *            to be converted.
 	 * @return JsonObject.
 	 */
 	public static JsonObject createJsonObject(final String jsonString) {

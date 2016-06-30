@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import com.couchbase.client.java.document.JsonDocument;
 import com.couchbase.client.java.document.RawJsonDocument;
+import com.couchbase.client.java.document.json.JsonObject;
 
 /**
  * @author debmalyajash
@@ -40,11 +41,12 @@ public class JsonBrothersUtilTest {
 		} catch (IllegalArgumentException iae) {
 			Assert.assertTrue("Test for IllegalArgumentException", true);
 		}
-		
+
 		try {
 			JsonDocument value = util.convertGson2JsonDocument(TestUtil.KEY, TestUtil.JSON_OBJ);
 			Assert.assertNotNull(value);
 			Assert.assertEquals(TestUtil.KEY, value.id());
+			Assert.assertEquals(TestUtil.GSON_STR, value.content().toString());
 		} catch (IllegalArgumentException iae) {
 			Assert.assertTrue("IllegalArgumentException not expected", false);
 		}
@@ -63,29 +65,45 @@ public class JsonBrothersUtilTest {
 		} catch (IllegalArgumentException iae) {
 			Assert.assertTrue("Test for IllegalArgumentException", true);
 		}
-		
+
 		try {
 			util.convertGson2RawJsonDocument(null, TestUtil.createJsonObject(TestUtil.JSON_STR));
 		} catch (IllegalArgumentException iae) {
 			Assert.assertTrue("Test for IllegalArgumentException", true);
 		}
-		
+
 		try {
 			util.convertGson2RawJsonDocument(TestUtil.KEY, null);
 		} catch (IllegalArgumentException iae) {
 			Assert.assertTrue("Test for IllegalArgumentException", true);
 		}
-		
+
 		try {
 			RawJsonDocument value = util.convertGson2RawJsonDocument(TestUtil.KEY, TestUtil.JSON_OBJ);
 			Assert.assertNotNull(value);
 			Assert.assertEquals(TestUtil.KEY, value.id());
-			Assert.assertEquals(TestUtil.JSON_STR,value.content());
+			Assert.assertEquals(TestUtil.JSON_STR, value.content());
 		} catch (IllegalArgumentException iae) {
 			Assert.assertTrue("IllegalArgumentException not expected", false);
 		}
 	}
 
+	/**
+	 * Test method for
+	 * {@link org.deb.utility.JsonBrothersUtil#convertGson2RawJsonDocument(com.google.gson.JsonObject)}
+	 * .
+	 */
+	@Test
+	public void testG2C() {
+		JsonBrothersUtil util = new JsonBrothersUtil();
+		try {
+			util.convertG2C(null);
+		} catch (IllegalArgumentException iae) {
+			Assert.assertTrue(true);
+		}
+
+		JsonObject value = util.convertG2C(TestUtil.JSON_OBJ);
+		System.out.println(value);
+	}
+
 }
-
-
