@@ -31,13 +31,22 @@
 
 package org.deb;
 
+import org.deb.utility.JsonBrothersUtil;
+import org.deb.utility.TestUtil;
 import org.openjdk.jmh.annotations.Benchmark;
 
 public class MyBenchmark {
 
     @Benchmark
-    public void testMethod() {
-        
+    public void testJsonDocument() {
+        JsonBrothersUtil util = new JsonBrothersUtil();
+        util.convertGson2JsonDocument(TestUtil.KEY, TestUtil.JSON_OBJ);
+    }
+    
+    @Benchmark
+    public void testRawJsonDocument() {
+    	JsonBrothersUtil util = new JsonBrothersUtil();
+        util.convertGson2RawJsonDocument(TestUtil.KEY, TestUtil.JSON_OBJ);
     }
 
 }

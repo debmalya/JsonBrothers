@@ -50,6 +50,12 @@ public class JsonBrothersUtil {
 		return RawJsonDocument.create(key, gsonObject.toString());
 	}
 
+	/**
+	 * THis is to validate parameters.
+	 * @param key to be stored in couchbase.
+	 * @param gsonObject Google JsonObject.
+	 * @throws IllegalArgumentException if any of the argument is null.
+	 */
 	private void validateNull(final String key, final JsonObject gsonObject) throws IllegalArgumentException {
 		if (key == null || gsonObject == null) {
 			throw new IllegalArgumentException("Any of the argument is null");
