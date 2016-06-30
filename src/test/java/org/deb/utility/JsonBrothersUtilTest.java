@@ -43,7 +43,7 @@ public class JsonBrothersUtilTest {
 		}
 
 		try {
-			JsonDocument value = util.convertGson2JsonDocument(TestUtil.KEY, TestUtil.JSON_OBJ);
+			JsonDocument value = util.convertGson2JsonDocument(TestUtil.KEY, TestUtil.GSON_OBJ);
 			Assert.assertNotNull(value);
 			Assert.assertEquals(TestUtil.KEY, value.id());
 			Assert.assertEquals(TestUtil.GSON_STR, value.content().toString());
@@ -79,7 +79,7 @@ public class JsonBrothersUtilTest {
 		}
 
 		try {
-			RawJsonDocument value = util.convertGson2RawJsonDocument(TestUtil.KEY, TestUtil.JSON_OBJ);
+			RawJsonDocument value = util.convertGson2RawJsonDocument(TestUtil.KEY, TestUtil.GSON_OBJ);
 			Assert.assertNotNull(value);
 			Assert.assertEquals(TestUtil.KEY, value.id());
 			Assert.assertEquals(TestUtil.JSON_STR, value.content());
@@ -90,7 +90,7 @@ public class JsonBrothersUtilTest {
 
 	/**
 	 * Test method for
-	 * {@link org.deb.utility.JsonBrothersUtil#convertGson2RawJsonDocument(com.google.gson.JsonObject)}
+	 * {@link org.deb.utility.JsonBrothersUtil#convertG2C(com.google.gson.JsonObject)}
 	 * .
 	 */
 	@Test
@@ -102,8 +102,26 @@ public class JsonBrothersUtilTest {
 			Assert.assertTrue(true);
 		}
 
-		JsonObject value = util.convertG2C(TestUtil.JSON_OBJ);
-		System.out.println(value);
+		JsonObject value = util.convertG2C(TestUtil.GSON_OBJ);
+		Assert.assertEquals(TestUtil.CSON_STR, value.toString());
+	}
+	
+	/**
+	 * Test method for
+	 * {@link org.deb.utility.JsonBrothersUtil#convertC2G(com.google.gson.JsonObject)}
+	 * .
+	 */
+	@Test
+	public void testC2G() {
+		JsonBrothersUtil util = new JsonBrothersUtil();
+		try {
+			util.convertC2G(null);
+		} catch (IllegalArgumentException iae) {
+			Assert.assertTrue(true);
+		}
+
+		com.google.gson.JsonObject value = util.convertC2G(TestUtil.CSON_OBJ);
+		Assert.assertEquals(TestUtil.GSON_STR, value.toString());
 	}
 
 }

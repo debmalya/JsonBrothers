@@ -43,13 +43,32 @@ public class MyBenchmark {
     @Benchmark
     public void testJsonDocument() {
         JsonBrothersUtil util = new JsonBrothersUtil();
-        util.convertGson2JsonDocument(TestUtil.KEY, TestUtil.JSON_OBJ);
+        util.convertGson2JsonDocument(TestUtil.KEY, TestUtil.GSON_OBJ);
+    }
+    
+    @Benchmark
+    public void testJsonStringDocument() {
+    	JsonBrothersUtil util = new JsonBrothersUtil();
+        util.convertGson2JsonStringDocument(TestUtil.KEY, TestUtil.GSON_OBJ);
     }
     
     @Benchmark
     public void testRawJsonDocument() {
     	JsonBrothersUtil util = new JsonBrothersUtil();
-        util.convertGson2RawJsonDocument(TestUtil.KEY, TestUtil.JSON_OBJ);
+        util.convertGson2RawJsonDocument(TestUtil.KEY, TestUtil.GSON_OBJ);
+    }
+    
+    
+    @Benchmark
+    public void testG2C() {
+    	JsonBrothersUtil util = new JsonBrothersUtil();
+        util.convertG2C(TestUtil.GSON_OBJ);
+    }
+    
+    @Benchmark
+    public void testC2G() {
+    	JsonBrothersUtil util = new JsonBrothersUtil();
+        util.convertC2G(TestUtil.CSON_OBJ);
     }
 
 }

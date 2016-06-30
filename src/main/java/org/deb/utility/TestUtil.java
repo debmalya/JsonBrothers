@@ -23,6 +23,9 @@ import com.google.gson.JsonParser;
  *
  */
 public class TestUtil {
+	/**
+	 * JSON string.
+	 */
 	public static final String JSON_STR = "{" + "\"glossary\":{" + "\"title\":\"example glossary\"," + "\"GlossDiv\":{"
 			+ "\"title\":\"S\"," + "\"GlossList\":{" + "\"GlossEntry\":{" + "\"ID\":\"SGML\"," + "\"SortAs\":\"SGML\","
 			+ "\"GlossTerm\":\"Standard Generalized Markup Language\"," + "\"Acronym\":\"SGML\","
@@ -30,9 +33,19 @@ public class TestUtil {
 			+ "\"para\":\"A meta-markup language, used to create markup languages such as DocBook.\","
 			+ "\"GlossSeeAlso\":[\"GML\",\"XML\"]" + "}," + "\"GlossSee\":\"markup\"" + "}" + "}" + "}" + "}" + "}";
 
+	/**
+	 * Google JSON string.
+	 */
 	public static final String GSON_STR = "{\"glossary\":{\"title\":\"example glossary\",\"GlossDiv\":{\"title\":\"S\",\"GlossList\":{\"GlossEntry\":{\"GlossTerm\":\"Standard Generalized Markup Language\",\"GlossSee\":\"markup\",\"SortAs\":\"SGML\",\"GlossDef\":{\"para\":\"A meta-markup language, used to create markup languages such as DocBook.\",\"GlossSeeAlso\":[\"GML\",\"XML\"]},\"ID\":\"SGML\",\"Acronym\":\"SGML\",\"Abbrev\":\"ISO 8879:1986\"}}}}}";
+	
+	/**
+	 * Couchbase JSON string.
+	 */
+	public static final String CSON_STR = "{\"glossary\":{\"title\":\"example glossary\",\"GlossDiv\":{\"title\":\"S\",\"GlossList\":{\"GlossEntry\":{\"GlossTerm\":\"Standard Generalized Markup Language\",\"GlossSee\":\"markup\",\"SortAs\":\"SGML\",\"GlossDef\":{\"para\":\"A meta-markup language, used to create markup languages such as DocBook.\",\"GlossSeeAlso\":[\"GML\",\"XML\"]},\"ID\":\"SGML\",\"Acronym\":\"SGML\",\"Abbrev\":\"ISO 8879:1986\"}}}}}";
 
-	public static final JsonObject JSON_OBJ = createJsonObject(JSON_STR);
+	public static final JsonObject GSON_OBJ = createJsonObject(JSON_STR);
+	
+	public static final com.couchbase.client.java.document.json.JsonObject CSON_OBJ = createCsonObject(CSON_STR);
 
 	public static final String KEY = "1234567890";
 
@@ -47,6 +60,16 @@ public class TestUtil {
 		JsonParser parser = new JsonParser();
 		JsonObject value = parser.parse(jsonString).getAsJsonObject();
 		return value;
+	}
+	
+	
+	/**
+	 * Create couchbase JsonObject from json string.
+	 * @param csonString json string to be converted.
+	 * @return Couchbase JsonObject.
+	 */
+	public static final com.couchbase.client.java.document.json.JsonObject createCsonObject(final String csonString) {
+		return com.couchbase.client.java.document.json.JsonObject.fromJson(csonString);
 	}
 
 }
